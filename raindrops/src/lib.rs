@@ -1,14 +1,12 @@
 pub fn raindrops(n: u32) -> String {
-    let mut result = String::new();
-    if n % 3 == 0 {
-        result.push_str("Pling");
-    }
-    if n % 5 == 0 {
-        result.push_str("Plang");
-    }
-    if n % 7 == 0 {
-        result.push_str("Plong");
-    }
+    let is_divisible_by = |div| n % div == 0;
+    let str_divisible_by = |s, div| if is_divisible_by(div) { s } else { "" };
+
+    let result = String::new()
+        + str_divisible_by("Pling", 3)
+        + str_divisible_by("Plang", 5)
+        + str_divisible_by("Plong", 7);
+
     if result.is_empty() {
         n.to_string()
     } else {
