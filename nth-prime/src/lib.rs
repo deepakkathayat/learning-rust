@@ -1,11 +1,13 @@
 fn next_prime(primes: &mut Vec<u32>) -> u32 {
     let size = primes.len();
+    let mut prime_candidate = primes[size - 1] + 2;
 
-    let mut prime_candidate = primes[size - 1];
-    let mut index;
     loop {
+        if !primes.iter().any(|x| prime_candidate % x == 0) {
+            return prime_candidate;
+        }
         prime_candidate += 2;
-        index = 0;
+        /* index = 0;
 
         while index < size {
             if prime_candidate % primes[index] == 0 {
@@ -16,6 +18,7 @@ fn next_prime(primes: &mut Vec<u32>) -> u32 {
         if index == size {
             return prime_candidate;
         }
+         */
     }
 }
 
