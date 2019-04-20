@@ -1,5 +1,4 @@
-use chrono::{DateTime, Utc};
-use time::Duration;
+use chrono::{DateTime, Duration, Utc};
 
 const BILLION: i64 = 1_000_000_000;
 
