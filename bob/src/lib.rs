@@ -7,7 +7,7 @@ fn check_silence(message: &str) -> bool {
 }
 
 fn check_yell(message: &str) -> bool {
-    message.to_ascii_uppercase() == *message && message.chars().any(char::is_alphabetic)
+    message.chars().any(char::is_alphabetic) && !message.chars().any(char::is_lowercase)
 }
 
 pub fn reply(message: &str) -> &str {
