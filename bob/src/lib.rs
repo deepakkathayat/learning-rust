@@ -1,31 +1,21 @@
-fn check_question(message: &String) -> bool {
-    if message.trim().ends_with("?") {
-        true
-    } else {
-        false
-    }
+fn check_question(message: &str) -> bool {
+    message.trim().ends_with("?")
 }
 
-fn check_silence(message: &String) -> bool {
-    if message.trim() == "" {
-        true
-    } else {
-        false
-    }
+fn check_silence(message: &str) -> bool {
+    message.trim() == ""
 }
 
-fn check_yell(message: &String) -> bool {
-    if message.to_ascii_uppercase() == *message && message.chars().any(char::is_alphabetic) {
-        true
-    } else {
-        false
-    }
+fn check_yell(message: &str) -> bool {
+    message.to_ascii_uppercase() == *message && message.chars().any(char::is_alphabetic)
 }
 
 pub fn reply(message: &str) -> &str {
-    let s = message.to_string();
-
-    match (check_question(&s), check_yell(&s), check_silence(&s)) {
+    match (
+        check_question(message),
+        check_yell(message),
+        check_silence(message),
+    ) {
         (_, _, true) => return "Fine. Be that way!",
         (true, true, _) => return "Calm down, I know what I'm doing!",
         (true, false, _) => return "Sure.",
