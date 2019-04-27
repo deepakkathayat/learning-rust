@@ -3,7 +3,7 @@ fn check_question(message: &str) -> bool {
 }
 
 fn check_silence(message: &str) -> bool {
-    message.trim() == ""
+    message.trim().is_empty()
 }
 
 fn check_yell(message: &str) -> bool {
