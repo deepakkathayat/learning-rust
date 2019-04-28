@@ -4,23 +4,23 @@ pub fn brackets_are_balanced(string: &str) -> bool {
         match c {
             '{' | '[' | '(' => chars.push(c),
             '}' => {
-                if !chars.ends_with(&['{']) {
+                if chars.pop() != Some('{') {
                     return false;
                 }
-                chars.pop();
             }
+
             ']' => {
-                if !chars.ends_with(&['[']) {
+                if chars.pop() != Some('[') {
                     return false;
                 }
-                chars.pop();
             }
+
             ')' => {
-                if !chars.ends_with(&['(']) {
+                if chars.pop() != Some('(') {
                     return false;
                 }
-                chars.pop();
             }
+
             _ => {}
         }
     }
