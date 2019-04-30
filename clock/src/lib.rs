@@ -6,10 +6,11 @@ pub struct Clock {
 
 impl Clock {
     pub fn new(hours: i32, minutes: i32) -> Self {
-        let h = (hours + (minutes / 60)) % 24;
+        let h = (hours as f32 + ((minutes / 60) as f32).floor()) as i32 % 24;
+        let m = minutes % 60;
         let clock = Clock {
-            hours: h,
-            minutes: minutes,
+            hours: if h >= 0 { h } else { h + 24 },
+            minutes: if m >= 0 { m } else { m + 60 },
         };
         clock
     }
