@@ -6,8 +6,9 @@ pub struct Clock {
 
 impl Clock {
     pub fn new(hours: i32, minutes: i32) -> Self {
+        let h = (hours + (minutes / 60)) % 24;
         let clock = Clock {
-            hours: hours,
+            hours: h,
             minutes: minutes,
         };
         clock
