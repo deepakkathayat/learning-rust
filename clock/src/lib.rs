@@ -16,10 +16,7 @@ impl Clock {
     }
 
     pub fn add_minutes(self, minutes: i32) -> Self {
-        self.minutes += minutes;
-        self.hours = (self.hours as f32 + (self.minutes as f32 / 60.0).floor()) as i32 % 24;
-        self.minutes %= 60;
-        self
+        Clock::new(self.hours, self.minutes + minutes)
     }
 
     pub fn to_string(&self) -> String {
