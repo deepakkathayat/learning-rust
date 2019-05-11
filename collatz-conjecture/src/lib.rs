@@ -1,17 +1,8 @@
-pub fn collatz(mut n: u64) -> Option<u64> {
-    if n == 0 {
-        return None;
+pub fn collatz(n: u64) -> Option<u64> {
+    match n {
+        0 => None,
+        1 => Some(0),
+        n if n%2 == 0 => collatz(n/2).map(|x| x+1),
+        _ => collatz(3*n+1).map(|x| x+1)
     }
-    let mut steps: u64 = 0;
-
-    while n > 1 {
-        if n%2 == 0 {
-            n = n/2;
-        }
-        else {
-            n = 3*n+1;
-        }
-        steps += 1;
-    }
-    Some(steps)
 }
