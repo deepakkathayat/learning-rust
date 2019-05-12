@@ -1,17 +1,21 @@
 extern crate rand;
 use rand::Rng;
 
-fn mod_pow(b: u64, mut e: u64, m: u64) -> u64 {
+fn mod_pow(mut b: u64, mut e: u64, m: u64) -> u64 {
     
     if m == 1 {
         return 0;
     }
-    let mut c: u64 = 1;
+    let mut result = 1;
+    b = b % m;
     while e > 0 {
-        c = (c*b) % m;
-        e-=1;
+        if e%2 == 1 {
+            result = (result*b) % m; 
+        }
+        e = e >> 1;
+        b = (b*b) % m;
     }
-    c
+    result
 }
 
 pub fn private_key(p: u64) -> u64 {
