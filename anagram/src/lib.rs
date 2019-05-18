@@ -7,7 +7,7 @@ pub fn anagrams_for<'a>(word: &str, possible_anagrams: &[&str]) -> HashSet<&'a s
 
     let result: HashSet<&'a str>  = HashSet::new();
     for item in res {
-        println!("{}",item);
+        result.insert(*item: &'a str);
     }
     result
 }
