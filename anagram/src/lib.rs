@@ -6,6 +6,7 @@ pub fn anagrams_for<'a>(word: &str, possible_anagrams: &[&'a str]) -> HashSet<&'
     println!("{:?}", w);
     let res: HashSet<&'a str> = possible_anagrams
         .iter()
+        .cloned()
         .filter(
             |s| {
                 let mut st = s.to_lowercase().chars().collect::<Vec<char>>();
@@ -14,7 +15,6 @@ pub fn anagrams_for<'a>(word: &str, possible_anagrams: &[&'a str]) -> HashSet<&'
                 st
             } == w && word.to_lowercase() != s.to_lowercase(),
         )
-        .map(|s| *s)
         .collect();
 
     res
