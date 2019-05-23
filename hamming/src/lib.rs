@@ -6,7 +6,7 @@ pub fn hamming_distance(s1: &str, s2: &str) -> Option<usize> {
     }
     Some(s1.chars().zip(s2.chars()).fold(0, |acc, x| {
         acc + {
-            if x.0 == x.1 {
+            if x.0 != x.1 {
                 1
             } else {
                 0
