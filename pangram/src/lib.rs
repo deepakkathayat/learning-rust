@@ -1,9 +1,13 @@
+use std::collections::HashSet;
+
 /// Determine whether a sentence is a pangram.
 pub fn is_pangram(sentence: &str) -> bool {
-    let pangram: Vec<char> = "abcdefghijklmnopqrstuvwxyz".chars().collect();
+    let pangram: HashSet<char> = "abcdefghijklmnopqrstuvwxyz".chars().collect();
 
-    let mut sorted_sentence: Vec<char> = sentence.trim().chars().collect();
-    sorted_sentence.sort();
-    println("{:?}", sorted_sentence);
-    pangram == sorted_sentence
+    let candidate = sentence
+        .chars()
+        .filter(|&x| x.is_ascii_alphabetic())
+        .map(|x| x.to_ascii_lowercase())
+        .collect::<HashSet<char>>();
+    pangram == candidate
 }
