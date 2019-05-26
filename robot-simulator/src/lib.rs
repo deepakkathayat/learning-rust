@@ -50,7 +50,17 @@ impl Robot {
         self
     }
 
-    pub fn instructions(self, instructions: &str) -> Self {}
+    pub fn instructions(mut self, instructions: &str) -> Self {
+        for c in instructions.chars() {
+            match c {
+                'R' => self = self.turn_right(),
+                'L' => self = self.turn_left(),
+                'A' => self = self.advance(),
+                _ => self = self,
+            }
+        }
+        self
+    }
 
     pub fn position(&self) -> (i32, i32) {
         (self.x, self.y)
