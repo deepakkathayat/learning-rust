@@ -1,6 +1,8 @@
 // The code below is a stub. Just enough to satisfy the compiler.
 // In order to pass the tests you can add-to or change any of this code.
 
+use Direction::*;
+
 #[derive(PartialEq, Debug)]
 pub enum Direction {
     North,
@@ -20,34 +22,43 @@ impl Robot {
         Robot { x: x, y: y, d: d }
     }
 
-    pub fn turn_right(mut self) -> Self {
+    pub fn turn_right(self) -> Self {
         match self.d {
-            Direction::North => self.d = Direction::East,
-            Direction::East => self.d = Direction::South,
-            Direction::South => self.d = Direction::West,
-            Direction::West => self.d = Direction::North,
+            North => Self { d: East, ..self },
+            East => Self { d: South, ..self },
+            South => Self { d: West, ..self },
+            West => Self { d: North, ..self },
         }
-        self
     }
 
-    pub fn turn_left(mut self) -> Self {
+    pub fn turn_left(self) -> Self {
         match self.d {
-            Direction::North => self.d = Direction::West,
-            Direction::East => self.d = Direction::North,
-            Direction::South => self.d = Direction::East,
-            Direction::West => self.d = Direction::South,
+            North => Self { d: West, ..self },
+            East => Self { d: North, ..self },
+            South => Self { d: East, ..self },
+            West => Self { d: South, ..self },
         }
-        self
     }
 
-    pub fn advance(mut self) -> Self {
+    pub fn advance(self) -> Self {
         match self.d {
-            Direction::North => self.y += 1,
-            Direction::East => self.x += 1,
-            Direction::South => self.y -= 1,
-            Direction::West => self.x -= 1,
+            North => Self {
+                y: self.y + 1,
+                ..self
+            },
+            East => Self {
+                x: self.x + 1,
+                ..self
+            },
+            South => Self {
+                y: self.y - 1,
+                ..self
+            },
+            West => Self {
+                x: self.x - 1,
+                ..self
+            },
         }
-        self
     }
 
     pub fn instructions(mut self, instructions: &str) -> Self {
