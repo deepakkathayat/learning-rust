@@ -1,16 +1,12 @@
 pub struct PascalsTriangle {
     row_count: u32,
-    rows: Vec<Vec<u32>>,
 }
 
 impl PascalsTriangle {
     pub fn new(row_count: u32) -> Self {
-        let mut p_triangle = PascalsTriangle {
+        PascalsTriangle {
             row_count: row_count,
-            rows: vec![vec![]],
-        };
-        p_triangle.rows = p_triangle.rows();
-        p_triangle
+        }
     }
 
     pub fn rows(&self) -> Vec<Vec<u32>> {
