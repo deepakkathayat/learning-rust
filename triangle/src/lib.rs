@@ -7,9 +7,12 @@ pub struct Triangle {
 impl Triangle {
     pub fn build(sides: [u64; 3]) -> Option<Triangle> {
         match (sides[0], sides[1], sides[2]) {
-            (x, y, z) if x + y > z => Some(Triangle { x, y, z }),
-            (x, y, z) if x + y > z => Some(Triangle { x, y, z }),
-            (x, y, z) if x + y > z => Some(Triangle { x, y, z }),
+            (0, _, _) => None,
+            (_, 0_, _) => None,
+            (_, _, 0) => None,
+            (x, y, z) if x + y >= z => Some(Triangle { x, y, z }),
+            (x, y, z) if x + y >= z => Some(Triangle { x, y, z }),
+            (x, y, z) if x + y >= z => Some(Triangle { x, y, z }),
             _ => None,
         }
     }
