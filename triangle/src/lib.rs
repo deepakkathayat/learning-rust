@@ -10,9 +10,7 @@ impl Triangle {
             (0, _, _) => None,
             (_, 0_, _) => None,
             (_, _, 0) => None,
-            (x, y, z) if x + y >= z => Some(Triangle { x, y, z }),
-            (x, y, z) if x + y >= z => Some(Triangle { x, y, z }),
-            (x, y, z) if x + y >= z => Some(Triangle { x, y, z }),
+            (x, y, z) if x + y >= z && y + z >= x && x + z >= y => Some(Triangle { x, y, z }),
             _ => None,
         }
     }
