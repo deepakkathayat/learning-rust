@@ -9,6 +9,10 @@ pub fn abbreviate(phrase: &str) -> String {
     for (i, &ch) in s.iter().enumerate() {
         if ch == b' ' && i + 1 != phrase.len() {
             result.push(s[i + 1] as char);
+        } else if ch == b'-' && i + 1 != phrase.len() {
+            result.push(s[i + 1] as char);
+        } else if ch.is_ascii_uppercase() {
+            result.push(ch as char);
         }
     }
 
