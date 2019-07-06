@@ -4,11 +4,13 @@ pub fn abbreviate(phrase: &str) -> String {
         return result;
     }
 
-    result.push(phrase[0]);
-    for (i, &ch) in phrase.iter().enumerate() {
-        if ch == ' ' && i + 1 != phrase.len() {
-            result.push(phrase[i + 1]);
+    let s = phrase.as_bytes();
+    result.push(s[0] as char);
+    for (i, &ch) in s.iter().enumerate() {
+        if ch == b' ' && i + 1 != phrase.len() {
+            result.push(s[i + 1] as char);
         }
     }
-    result
+
+    result.to_uppercase()
 }
