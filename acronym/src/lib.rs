@@ -5,13 +5,13 @@ pub fn abbreviate(phrase: &str) -> String {
     }
 
     let s = phrase.as_bytes();
-    result.push(s[0] as char);
+
     for (i, &ch) in s.iter().enumerate() {
-        if ch == b' ' && i + 1 != phrase.len() {
-            result.push(s[i + 1] as char);
-        } else if ch == b'-' && i + 1 != phrase.len() {
-            result.push(s[i + 1] as char);
-        } else if ch.is_ascii_uppercase() {
+        if i == 0 {
+            result.push(ch as char);
+        } else if s[i - 1] == b' ' || s[i - 1] == b'-' {
+            result.push(ch as char);
+        } else if ch.is_ascii_uppercase() && s[i - 1].is_ascii_lowercase() {
             result.push(ch as char);
         }
     }
