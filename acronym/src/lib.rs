@@ -4,5 +4,11 @@ pub fn abbreviate(phrase: &str) -> String {
         return result;
     }
 
-    for (i, &ch) in phrase.iter().enumerate() {}
+    result.push(phrase[0]);
+    for (i, &ch) in phrase.iter().enumerate() {
+        if ch == ' ' && i + 1 != phrase.len() {
+            result.push(phrase[i + 1]);
+        }
+    }
+    result
 }
